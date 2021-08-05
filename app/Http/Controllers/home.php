@@ -7,8 +7,12 @@ use Illuminate\Http\Request;
 class home extends Controller
 {
     //
-    public function index()
+    public function index($age = null)
     {
-        return view('home');
+        $name = 'kader';
+        return view('home')->with([
+            'name' => $name,
+            'age'=>$age
+        ]);
     }
 }

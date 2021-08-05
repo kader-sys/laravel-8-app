@@ -1,1 +1,1 @@
-welcome to home page
+hello {{ $name }}  {{$age}}
