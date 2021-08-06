@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,3 +19,4 @@ Route::get('/', function () {
 });
 
 Route::get('/home/{age?}','home@index');
+Route::get('/post/{id}','home@showDetail')->name('show.post');
