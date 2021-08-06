@@ -7,12 +7,27 @@ use Illuminate\Http\Request;
 class home extends Controller
 {
     //
-    public function index($age = null)
+    public function index()
     {
-        $name = 'kader';
+        $posts = [
+            [
+                'id'=> 1,
+                'title'=>'title post 1',
+                'body'=> 'body post 1'
+            ],
+            [
+                'id'=> 2,
+                'title'=>'title post 2',
+                'body'=> 'body post 2'
+            ],
+            [
+                'id'=> 3,
+                'title'=>'title post 3',
+                'body'=> 'body post 3'
+            ]
+        ];
         return view('home')->with([
-            'name' => $name,
-            'age'=>$age
+            'posts' => $posts,
         ]);
     }
 }
