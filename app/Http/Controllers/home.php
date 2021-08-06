@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class home extends Controller
 {
     //
     public function index()
     {
-        $posts = post::paginate(6);
+        $posts = post::latest()->paginate(6);
         return view('home')->with([
             'posts' => $posts
         ]);
@@ -18,9 +19,41 @@ class home extends Controller
 
     public function showDetail($slug)
     {
-        $post = post::where('slug',$slug)->first();
+        $post = post::where('slug', $slug)->first();
         return view('show-detail')->with([
             'post' => $post
         ]);
+    }
+
+    public function create()
+    {
+        return view('create');
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request,[
+            'title'=> 'required|min:3|max:100',
+            'body'=> 'required|min:10|max:1000',
+        ]);
+
+/*  ====== methode 1 ========  
+     $post = new post();
+        $post->title = $request->title;
+        $post->slug = Str::slug($request->title);
+        $post->body = $request->body;
+        $post->image = 'https://via.placeholder.com/640x480.png/006644?text=new-post';
+        $post->save(); */
+        /*  //console form//
+        dd($request->all()); */
+
+    // =========== methode 2 =========
+    post::create([
+        'title'=>  $request->title,
+        'body'=> $request->body,
+        'image'=> 'https://via.placeholder.com/640x480.png/006644?text=new-post',
+        'slug'=> Str::slug($request->title)
+    ]);
+    echo 'article ajouter';
     }
 }

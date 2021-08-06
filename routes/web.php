@@ -14,9 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('welcome');
-});
+}); */
 
-Route::get('/home/{age?}','home@index');
+Route::get('/','home@index');
 Route::get('/post/{slug}','home@showDetail')->name('show.post');
+Route::get('/create/post','home@create')->name('create.post');
+Route::post('/add/post','home@store')->name('store.post');
