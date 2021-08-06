@@ -19,4 +19,4 @@ Route::get('/', function () {
 });
 
 Route::get('/home/{age?}','home@index');
-Route::get('/post/{id}','home@showDetail')->name('show.post');
+Route::get('/post/{slug}','home@showDetail')->name('show.post');

@@ -16,9 +16,9 @@ class home extends Controller
         ]);
     }
 
-    public function showDetail($id)
+    public function showDetail($slug)
     {
-        $post = post::find($id);
+        $post = post::where('slug',$slug)->first();
         return view('show-detail')->with([
             'post' => $post
         ]);

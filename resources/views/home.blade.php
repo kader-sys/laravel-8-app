@@ -18,7 +18,7 @@ home
                     <div class="card-body">
                         <h5 class="card-title">{{$post->title}}</h5>
                         <p class="card-text">{{Str::limit($post->body,100)}}</p>
-                        <a href="{{route('show.post',$post->id)}}" class="btn btn-primary">voir..</a>
+                        <a href="{{route('show.post',$post->slug)}}" class="btn btn-primary">voir..</a>
                     </div>
                 </div>
             </div>
