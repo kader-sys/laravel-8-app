@@ -34,10 +34,10 @@ class home extends Controller
 
     public function store(PostRequest $request)
     {
-        if($request->has('image')){
+        if ($request->has('image')) {
             $file = $request->image;
             $image_name = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('uploads'),$image_name);
+            $file->move(public_path('uploads'), $image_name);
         }
 
         /*  ====== methode 1 ========  
@@ -64,40 +64,40 @@ class home extends Controller
 
     public function edit($slug)
     {
-        $post = post::where('slug',$slug)->first();
+        $post = post::where('slug', $slug)->first();
         return view('edit')->with([
-            'post'=> $post
+            'post' => $post
         ]);
     }
 
-    public function update(PostRequest $request,$slug)
+    public function update(PostRequest $request, $slug)
     {
-        $post = post::where('slug',$slug)->first();
-        if($request->has('image')){
+        $post = post::where('slug', $slug)->first();
+        if ($request->has('image')) {
             $file = $request->image;
             $image_name = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('uploads'),$image_name);
-            unlink(public_path('uploads/').$post->image);
+            $file->move(public_path('uploads'), $image_name);
+            unlink(public_path('uploads') . '/' . $post->image);
             $post->image = $image_name;
         }
         $post->update([
             'title' =>  $request->title,
             'body' => $request->body,
-            'image' => $image_name,
+            'image' => $post->image,
             'slug' => Str::slug($request->title)
         ]);
         return redirect()->route('home')->with([
-            'success'=> 'article updated'
+            'success' => 'article updated'
         ]);
     }
 
     public function delete($slug)
     {
-        $post= post::where('slug',$slug);
-        unlink(public_path('uploads/').$post->image);
+        $post = post::where('slug', $slug)->first();
+        unlink(public_path('uploads') . '/' . $post->image);
         $post->delete();
         return redirect()->route('home')->with([
-            'success'=> 'article deleted'
+            'success' => 'article deleted'
         ]);
     }
 }

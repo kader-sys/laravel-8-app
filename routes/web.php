@@ -25,3 +25,7 @@ Route::post('/add/post','home@store')->name('store.post');
 Route::get('/edit/post/{slug}', 'home@edit')->name('edit.post');
 Route::put('/update/post/{slug}','home@update')->name('update.post');
 Route::delete('/delete/post/{slug}','home@delete')->name('delete.post');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
