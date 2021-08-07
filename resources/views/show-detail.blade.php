@@ -19,6 +19,9 @@
                         <p class="card-text">{{$post->body}}</p>
                     </div>
                 </div>
+                <a href="{{route('edit.post',$post->slug)}}" class="btn btn-warning">
+                    Modifier
+                </a>
             </div>
         </div>
     </div>
