@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\post;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Http\Requests\PostRequest;
 
 class home extends Controller
 {
@@ -30,12 +30,9 @@ class home extends Controller
         return view('create');
     }
 
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        $this->validate($request,[
-            'title'=> 'required|min:3|max:100',
-            'body'=> 'required|min:10|max:1000',
-        ]);
+    
 
 /*  ====== methode 1 ========  
      $post = new post();
