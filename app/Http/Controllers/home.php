@@ -66,7 +66,7 @@ class home extends Controller
         ]);
     }
 
-    public function update(Request $request,$slug)
+    public function update(PostRequest $request,$slug)
     {
         $post = post::where('slug',$slug)->first();
         $post->update([
@@ -77,6 +77,15 @@ class home extends Controller
         ]);
         return redirect()->route('home')->with([
             'success'=> 'article updated'
+        ]);
+    }
+
+    public function delete($slug)
+    {
+        $post= post::where('slug',$slug);
+        $post->delete();
+        return redirect()->route('home')->with([
+            'success'=> 'article deleted'
         ]);
     }
 }
