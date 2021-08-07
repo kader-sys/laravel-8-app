@@ -18,7 +18,7 @@ home
             @foreach ($posts as $post)
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
-                    <img src="{{asset($post->image)}}"
+                    <img src="{{asset('./uploads/'.$post->image)}}"
                         class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{$post->title}}</h5>

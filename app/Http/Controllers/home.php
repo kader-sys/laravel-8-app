@@ -34,7 +34,11 @@ class home extends Controller
 
     public function store(PostRequest $request)
     {
-
+        if($request->has('image')){
+            $file = $request->image;
+            $image_name = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('uploads'),$image_name);
+        }
 
         /*  ====== methode 1 ========  
      $post = new post();
@@ -50,7 +54,7 @@ class home extends Controller
         post::create([
             'title' =>  $request->title,
             'body' => $request->body,
-            'image' => 'https://via.placeholder.com/640x480.png/006644?text=new-post',
+            'image' => $image_name,
             'slug' => Str::slug($request->title)
         ]);
         return redirect()->route('home')->with([

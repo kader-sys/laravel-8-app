@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-md-10 mb-4">
                 <div class="card h-100">
-                    <img src="{{asset($post->image)}}" class="card-img-top" alt="...">
+                    <img src="{{asset('./uploads/'.$post->image)}}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{$post->title}}</h5>
                         <p class="card-text">{{$post->body}}</p>
