@@ -73,10 +73,17 @@ class home extends Controller
     public function update(PostRequest $request,$slug)
     {
         $post = post::where('slug',$slug)->first();
+        if($request->has('image')){
+            $file = $request->image;
+            $image_name = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('uploads'),$image_name);
+            unlink(public_path('uploads/').$post->image);
+            $post->image = $image_name;
+        }
         $post->update([
             'title' =>  $request->title,
             'body' => $request->body,
-            'image' => 'https://via.placeholder.com/640x480.png/006644?text=new-post',
+            'image' => $image_name,
             'slug' => Str::slug($request->title)
         ]);
         return redirect()->route('home')->with([
@@ -87,6 +94,7 @@ class home extends Controller
     public function delete($slug)
     {
         $post= post::where('slug',$slug);
+        unlink(public_path('uploads/').$post->image);
         $post->delete();
         return redirect()->route('home')->with([
             'success'=> 'article deleted'
