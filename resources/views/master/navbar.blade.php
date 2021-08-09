@@ -10,9 +10,24 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{url('/')}}">Acceuil</a>
                 </li>
+             
+
+                @if (auth()->check())
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('create.post')}}">Ajouter</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('profile.show')}}">{{auth()->user()->name}}</a>
+                </li>
+                    
+                @else
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('/register')}}">inscription</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('/login')}}">connexion</a>
+                </li>
+                @endif
 
             </ul>
             <form class="d-flex">
