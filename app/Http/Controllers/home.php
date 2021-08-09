@@ -55,7 +55,8 @@ class home extends Controller
             'title' =>  $request->title,
             'body' => $request->body,
             'image' => $image_name,
-            'slug' => Str::slug($request->title)
+            'slug' => Str::slug($request->title),
+            'user_id'=> auth()->user()->id        
         ]);
         return redirect()->route('home')->with([
             'success' => 'article ajouter'
@@ -84,7 +85,8 @@ class home extends Controller
             'title' =>  $request->title,
             'body' => $request->body,
             'image' => $post->image,
-            'slug' => Str::slug($request->title)
+            'slug' => Str::slug($request->title),
+            'user_id'=> auth()->user()->id        
         ]);
         return redirect()->route('home')->with([
             'success' => 'article updated'
