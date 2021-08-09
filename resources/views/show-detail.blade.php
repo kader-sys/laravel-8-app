@@ -18,6 +18,7 @@
                         <p class="card-text">{{$post->body}}</p>
                     </div>
                 </div>
+                @if (auth()->user()->id == $post->user_id)
                 <a href="{{route('edit.post',$post->slug)}}" class="btn btn-warning">
                     Modifier
                 </a>
@@ -25,11 +26,11 @@
                     @csrf
                     @method('delete')
                 </form>
-                <button
-                onclick="event.preventDefault();if(confirm('do yo want to delete this article?'))
-                 document.getElementById({{$post->id}}).submit()" type="submit" class="btn btn-danger">
+                <button onclick="event.preventDefault();if(confirm('do yo want to delete this article?'))
+             document.getElementById({{$post->id}}).submit()" type="submit" class="btn btn-danger">
                     delete
                 </button>
+                @endif
             </div>
         </div>
     </div>
