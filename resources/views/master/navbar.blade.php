@@ -14,7 +14,7 @@
 
                 @if (auth()->check())
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('create.post')}}">Ajouter</a>
+                    <a class="nav-link" href="{{route('posts.create')}}">Ajouter</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('profile.show')}}">{{auth()->user()->name}}</a>

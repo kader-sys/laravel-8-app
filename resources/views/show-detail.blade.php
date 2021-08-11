@@ -18,18 +18,21 @@
                         <p class="card-text">{{$post->body}}</p>
                     </div>
                 </div>
+
+                @if (auth()->check())
                 @if (auth()->user()->id == $post->user_id)
-                <a href="{{route('edit.post',$post->slug)}}" class="btn btn-warning">
+                <a href="{{route('posts.edit',$post->slug)}}" class="btn btn-warning">
                     Modifier
                 </a>
-                <form id="{{$post->id}}" action="{{route('delete.post',$post->slug)}}" method="POST">
+                <form id="{{$post->id}}" action="{{route('posts.destroy',$post->slug)}}" method="POST">
                     @csrf
                     @method('delete')
                 </form>
                 <button onclick="event.preventDefault();if(confirm('do yo want to delete this article?'))
-             document.getElementById({{$post->id}}).submit()" type="submit" class="btn btn-danger">
+            document.getElementById({{$post->id}}).submit()" type="submit" class="btn btn-danger">
                     delete
                 </button>
+                @endif
                 @endif
             </div>
         </div>

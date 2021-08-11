@@ -24,7 +24,7 @@ publish
                 </h3>
             </div>
             <div class="card-body">
-                <form action="{{route('store.post')}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('posts.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">chose Image</label>

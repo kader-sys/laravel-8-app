@@ -24,7 +24,7 @@ modifier
                 </h3>
             </div>
             <div class="card-body">
-                <form action="{{route('update.post',$post->slug)}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('posts.update',$post->slug)}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('put')
                     <div class="mb-3">

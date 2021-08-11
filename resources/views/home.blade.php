@@ -6,6 +6,8 @@
 home
 @endsection
 
+
+
 @section('content')
 <div class="row my-5">
     <div class="col-md-8">
@@ -14,6 +16,12 @@ home
             {{session()->get('success')}}
         </div>
         @endif
+  {{--       @foreach ($categories as $cat )
+        <ul class="list-group">
+            <li class="list-group-item">{{$cat->name}}</li>
+        </ul>
+        @endforeach --}}
+
         <div class="row">
             @foreach ($posts as $post)
             <div class="col-md-4 mb-4">
@@ -23,7 +31,7 @@ home
                         <h5 class="card-title">{{$post->title}}</h5>
                         <h6 class="card-title">{{$post->user ? $post->user->name : null}}</h6>
                         <p class="card-text">{{Str::limit($post->body,100)}}</p>
-                        <a href="{{route('show.post',$post->slug)}}" class="btn btn-primary">voir..</a>
+                        <a href="{{route('posts.show',$post->slug)}}" class="btn btn-primary">voir..</a>
                     </div>
                 </div>
             </div>

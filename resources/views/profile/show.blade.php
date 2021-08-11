@@ -47,11 +47,11 @@
                                             </p>
                                         </td>
                                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                            <a href="{{route('edit.post',$post->slug)}}"
+                                            <a href="{{route('posts.edit',$post->slug)}}"
                                                 class="bg-yellow-500 rounded-lg font-bold text-dark text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-600 mr-6">
                                                 Modifier
                                             </a>
-                                            <form id="{{$post->id}}" action="{{route('delete.post',$post->slug)}}"
+                                            <form id="{{$post->id}}" action="{{route('posts.destroy',$post->slug)}}"
                                                 method="POST">
                                                 @csrf
                                                 @method('delete')
