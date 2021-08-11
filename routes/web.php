@@ -19,13 +19,11 @@ use Illuminate\Support\Facades\Route;
 }); */
 
 Route::get('/','home@index')->name('home');
-Route::get('/post/{slug}','home@showDetail')->name('show.post');
-Route::get('/create/post','home@create')->name('create.post');
-Route::post('/add/post','home@store')->name('store.post');
-Route::get('/edit/post/{slug}', 'home@edit')->name('edit.post');
-Route::put('/update/post/{slug}','home@update')->name('update.post');
-Route::delete('/delete/post/{slug}','home@delete')->name('delete.post');
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return redirect('/');
 });
+
+Route::resource('categories', 'CategoryController');
+Route::resource('posts', 'PostController');
